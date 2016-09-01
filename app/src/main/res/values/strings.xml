@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sunny</string>
+    <string name="error">Error occurred</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunrise">Sunrise</string>
+</resources>
