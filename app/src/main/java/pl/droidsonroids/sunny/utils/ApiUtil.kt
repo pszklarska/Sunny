@@ -12,28 +12,32 @@ object ApiUtil {
     val PRESSURE_UNIT = "hPa"
     val VISIBILITY_UNIT = "m"
 
+    val DATE_FORMAT_PATTERN = "HH:mm"
+
     fun copyWeatherToWeatherStateList(weather: Weather): List<WeatherState> {
         val weatherInfoList = ArrayList<WeatherState>()
-        weatherInfoList.clear()
         weatherInfoList.add(WeatherState(WeatherState.State.TEMPERATURE,
                 R.string.temperature,
                 weather.main.temp + TEMPERATURE_UNIT))
         weatherInfoList.add(WeatherState(WeatherState.State.HUMIDITY,
                 R.string.humidity,
                 weather.main.humidity + HUMIDITY_UNIT))
-        weatherInfoList.add(WeatherState(WeatherState.State.PRESSURE, R.string.pressure, weather.main.pressure +
-                PRESSURE_UNIT))
+        weatherInfoList.add(WeatherState(WeatherState.State.PRESSURE,
+                R.string.pressure,
+                weather.main.pressure + PRESSURE_UNIT))
         weatherInfoList.add(WeatherState(WeatherState.State.VISIBILITY,
                 R.string.visibility,
                 weather.visibility + VISIBILITY_UNIT))
-        weatherInfoList.add(WeatherState(WeatherState.State.SUNRISE, R.string.sunrise, getDateFromMillis(
-                weather.sys.sunrise)))
-        weatherInfoList.add(WeatherState(WeatherState.State.SUNSET, R.string.sunset, getDateFromMillis(weather.sys
-                .sunset)))
+        weatherInfoList.add(WeatherState(WeatherState.State.SUNRISE,
+                R.string.sunrise,
+                getDateFromMillis(weather.sys.sunrise)))
+        weatherInfoList.add(WeatherState(WeatherState.State.SUNSET,
+                R.string.sunset,
+                getDateFromMillis(weather.sys.sunset)))
         return weatherInfoList
     }
 
     private fun getDateFromMillis(millis: String): String {
-        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(millis.toLong() * 1000)
+        return SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault()).format(millis.toLong() * 1000)
     }
 }
